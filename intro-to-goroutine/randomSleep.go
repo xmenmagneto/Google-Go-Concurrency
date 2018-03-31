@@ -6,7 +6,7 @@ import (
 	"math/rand"
 )
 
-func boring(msg string) {
+func randomSleep(msg string) {
 	for i := 0; ; i++ {
 		fmt.Println(msg, i)
 		time.Sleep(time.Duration(rand.Intn(1e3)) * time.Millisecond)
@@ -14,5 +14,5 @@ func boring(msg string) {
 }
 
 func main() {
-	boring("boring")
+	randomSleep("boring")
 }

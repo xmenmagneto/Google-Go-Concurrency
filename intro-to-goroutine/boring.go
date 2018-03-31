@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"time"
+"fmt"
+"time"
 )
 
-func boring(msg string) {
+func Boring(msg string) {
 	for i := 0; ; i++ {
 		fmt.Println(msg, i)
 		time.Sleep(time.Second)
@@ -13,5 +13,5 @@ func boring(msg string) {
 }
 
 func main() {
-	boring("boring")
+	Boring("boring")
 }
