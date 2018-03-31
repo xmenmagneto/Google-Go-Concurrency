@@ -7,9 +7,11 @@ import (
 )
 
 func main() {
-	c := boring1("boring")  //  Function returning a channel
+	joe := boring1("Joe")  //  Function returning a channel
+	ann := boring1("Ann")
 	for i := 0; i < 5; i++ {
-		fmt.Printf("You say: %q\n", <-c)
+		fmt.Println(<-joe)
+		fmt.Println(<-ann)
 	}
 	fmt.Println("You're boring; I'm leaving")
 }
