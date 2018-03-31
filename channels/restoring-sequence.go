@@ -13,7 +13,7 @@ type Message struct {
 
 func main() {
 	//  Get Message channel by lockstep
-	c := fanIn1(boring3("Joe"), boring3("Ann"))
+	c := fanIn2(boring3("Joe"), boring3("Ann"))
 	for i := 0; i < 5; i++ {
 		msg1 := <-c; fmt.Println(msg1.str)
 		msg2 := <-c; fmt.Println(msg2.str)
@@ -36,6 +36,21 @@ func fanIn1(input1, input2 <-chan Message) <-chan Message {
 	go func() {
 		for {
 			c <- <- input2
+		}
+	}()
+	return c
+}
+
+//  use select
+//  get whoever has something to say first
+func fanIn2(input1, input2 <-chan Message) <-chan Message {
+	c := make(chan Message)
+	go func() {
+		for {
+			select {
+			case s := <-input1: c <-s
+			case s := <-input2: c <-s
+			}
 		}
 	}()
 	return c
